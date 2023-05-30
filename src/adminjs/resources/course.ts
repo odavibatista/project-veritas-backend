@@ -1,0 +1,29 @@
+// src/adminjs/resources/course.ts
+
+import { ResourceOptions, FeatureType } from "adminjs";
+import uploadFileFeature from '@adminjs/upload'
+import path from "path";
+
+export const courseResourceOptions: ResourceOptions = {
+    navigation: 'Catálogo',
+    editProperties: ['name', 'synopsis', 'uploadThumbnail', 'featured', 'categoryId'],
+    filterProperties: ['name', 'synopsis', 'featured', 'categoryId', 'createdAt', 'updatedAt'],
+    listProperties: ['id', 'name', 'featured', 'categoryId'],
+    showProperties: ['id', 'name', 'synopsis', 'featured', 'thumbnailUrl', 'categoryId', 'createdAt', 'updatedAt']
+}
+
+export const CourseResourceFeatures: FeatureType[] = [
+    uploadFileFeature({
+        provider: {
+            local: {
+                bucket: path.join(__dirname,  '..', '..', '..', 'public'),
+                opts: {}
+            }
+        },
+        properties: {
+            key: 'thumbnailUrl',
+            file: 'uploadThumbnail'
+        },
+        uploadPath: (record, filename) => `thumbnails/course-${record.get('id')}${filename}`
+    })
+]
