@@ -26,7 +26,7 @@
     "express-session": "^1.18.2",
     "jsonwebtoken": "^9.0.0",
     "pg": "~8.7.1",
-    "sequelize": "^6.31.0"
+    "sequelize": "^6.37.8"
   },
   "devDependencies": {
     "@types/bcrypt": "~5.0.0",
